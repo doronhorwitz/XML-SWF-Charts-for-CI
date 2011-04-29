@@ -41,7 +41,7 @@
  * @license http://doronhorwitz.github.com/bsd_new_license.txt New BSD License
  * @see http://doronhorwitz.github.com/XML-SWF-Charts-for-CI/
  * @see http://maani.us/xml_charts/
- * @author Doron Horwitz <milktekza@gmail.com>
+ * @author Doron Horwitz <doron@milktek.com>
  * @version 1.0
  * @copyright Copyright (c) 2011, Doron Horwitz
  */
@@ -54,7 +54,7 @@
  * 
  * @package xml_swf_charts_for_ci
  * @subpackage classes
- * @author Doron Horwitz <milktekza@gmail.com>
+ * @author Doron Horwitz <doron@milktek.com>
  * @version 1.0
  * @copyright Copyright (c) 2011, Doron Horwitz
  */
@@ -230,7 +230,7 @@ class Maani_xml_swf_charts {
  * 
  * @package xml_swf_charts_for_ci
  * @subpackage classes
- * @author Doron Horwitz <milktekza@gmail.com>
+ * @author Doron Horwitz <doron@milktek.com>
  * @version 1.0
  * @copyright Copyright (c) 2011, Doron Horwitz
  */
@@ -420,7 +420,7 @@ class Data_node {
  * e.g.
  * <node attrname1="attrval1" attrname2="attrval2" />
  * 
- * @author Doron Horwitz <milktekza@gmail.com>
+ * @author Doron Horwitz <doron@milktek.com>
  * @version 1.0
  * @copyright Copyright (c) 2011, Doron Horwitz 
  * @package xml_swf_charts_for_ci
@@ -481,7 +481,7 @@ class Self_closing_anode {
  *  <subnode>Example3</subnode>
  * </node>
  *
- * @author Doron Horwitz <milktekza@gmail.com>
+ * @author Doron Horwitz <doron@milktek.com>
  * @version 1.0
  * @copyright Copyright (c) 2011, Doron Horwitz
  * @package xml_swf_charts_for_ci
@@ -561,7 +561,7 @@ class Node_with_same_text_nodes {
  *  <subnode attrname4="attrval4" attrname5="attrval5" />
  * </node>
  * 
- * @author Doron Horwitz <milktekza@gmail.com>
+ * @author Doron Horwitz <doron@milktek.com>
  * @version 1.0
  * @copyright Copyright (c) 2011, Doron Horwitz 
  * @package xml_swf_charts_for_ci
@@ -637,7 +637,7 @@ class Node_with_same_anodes {
  *  <subnode3 attrname5="attrval5" attrname5="attrval5 />
  * </node>
  *
- * @author Doron Horwitz <milktekza@gmail.com>
+ * @author Doron Horwitz <doron@milktek.com>
  * @version 1.0
  * @copyright Copyright (c) 2011, Doron Horwitz
  * @package xml_swf_charts_for_ci
@@ -717,7 +717,7 @@ class Node_with_diff_text_anodes {
  * 
  * @package xml_swf_charts_for_ci
  * @subpackage classes
- * @author Doron Horwitz <milktekza@gmail.com>
+ * @author Doron Horwitz <doron@milktek.com>
  * @version 1.0
  * @copyright Copyright (c) 2011, Doron Horwitz
  */
