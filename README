@@ -1,0 +1,21 @@
+Author: Doron Horwitz (milkekza@gmail.com)
+License: New BSD License (http://doronhorwitz.github.com/bsd_new_license.txt)
+Site: http://doronhorwitz.github.com/XML-SWF-Charts-for-CI/
+
+
+About
+-----
+XML/SWF Charts for CI is an open-source CodeIgniter library for simplifying the task of generating the XML used by the XML/SWF Charts tool (http://www.maani.us/xml_charts/). This library contains methods corresponding to each of the base XML nodes which are listed in the XML/SWF Charts reference. By calling the relevant methods, an XML DOM document is built up. In this way, the library hides the complexity of manually building up a DOM document to generate this XML.
+
+
+Installation
+------------
+For CodeIgniter 1.x.x: place the Maani_xml_swf_charts.php file in the <base_dir>/<system>/application/libraries directory
+For CodeIgniter 2.x.x: place the Maani_xml_swf_charts.php file in the <base_dir>/application/libraries directory
+
+
+Documentation
+-------------
+See http://doronhorwitz.github.com/XML-SWF-Charts-for-CI/documentation.html
+
+
