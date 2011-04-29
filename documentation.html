@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+ <title>Doron Horwitz on GitHub</title>
+ <link rel="stylesheet" type="text/css" href="../styles/styles.css" />
+ <link rel="stylesheet" type="text/css" href="../styles/prettify.css" />
+ <script type="text/javascript" src="../js/prettify/prettify.js"></script>
+</head>
+<body onload="prettyPrint()">
+<div id="wrapper">
+
+	<div id="top" class="clear">
+		<h1><a href="http://doronhorwitz.github.com">Doron Horwitz on GitHub</a></h1>
+		
+		<ul>
+			<li class="selected"><a href="about.html">XML/SWF Charts for CI</a></li>
+			<li><a href="../about.html">Me</a></li>
+		</ul>
+	</div>
+	
+	<div id="body" class="clear">
+		<div id="sidebar" class="column-left">
+			<ul>	
+				<li>
+					<h4>XML/SWF Charts for CI</h4>
+	
+					<ul>
+						<li><a href="about.html" title="About XML/SWF Charts for CI">About</a></li>
+						<li><a href="download.html" title="Download XML/SWF Charts for CI">Download</a></li>
+						<li><a href="installation.html" title="Installation of XML/SWF Charts for CI">Installation</a></li>
+						<li><a href="documentation.html" title="Documentation for XML/SWF Charts for CI">Documentation</a></li>
+						<li><a href="license.html" title="License for XML/SWF Charts for CI">License</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div id="content" class="column-right">
+			<h2>XML/SWF Charts for CodeIgniter</h2>
+			<h4>Documentation</h4>
+	
+			<h3>Usage</h3>
+			<p>Using this library involves loading the library, calling the XML related methods on the library (see section <em>"XML Related Methods"</em> below) and then generating the XML.</p>
+			<p>Example:</p>
+			<pre class="prettyprint">
+//load the library
+$this->load->library('maani_xml_swf_charts');
+
+//add XML nodes
+$this->maani_xml_swf_charts->chart_type("stacked column");
+$this->maani_xml_swf_charts->chart_data(
+					array("sales","non-sales"),
+					array("Clothing","Food","Toys"),
+					array(
+						array("100","145"),
+						array("34","54"),
+						array("84","21")));
+$this->maani_xml_swf_charts->chart_label(array(
+					"shadow"=>'low',
+					"color"=>'ffffff',
+					"alpha"=>'95',
+					"size"=>'20',
+					"position"=>'inside',
+					"as_percentage"=>'true'));
+	
+//generate XML	
+$xml_string = $this->maani_xml_swf_charts->generate_xml();
+			</pre><br /><br />
+			<h3>General Methods</h3>
+			<span class="doc-funcname">generate_xml ()</span><br />
+			<p class="doc-descrip"><strong>returns</strong>: a string of the generated XML</p>
+
+			<span class="doc-funcname">clear ()</span><br />
+			<p class="doc-descrip">clears out all the nodes added using the XML related methods</p>
+			
+			<h3>XML Related Methods</h3>
+			
+			<span class="doc-funcname">chart_border (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=chart_border">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">chart_data (<span class="doc-funcname-type">array</span> $category_headers, <span class="doc-funcname-type">array</span> $value_headers, <span class="doc-funcname-type">array</span> $data, [<span class="doc-funcname-type">array</span> $attrs])</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$category_headers:</span> an array of labels on the independent axis (which is usually the horizontal axis)<br />
+			<span class="doc-attr">$value_headers:</span> an array of labels on the dependent axis (which is usually the vertical axis)<br />
+			<span class="doc-attr">$data:</span> the 2D array of data representing the data to be used to generate the chart<br />
+			<span class="doc-attr">$attrs:</span> a separate array of attributes. Either a single dimensional array of key/value pairs representing attributes to be applied to all data nodes or a 2D array of associative arrays at the same positions of the relevant data in the <strong>$data</strong>.</p>
+			<p>The <strong>$data</strong> array can be in two forms:</p>
+				<ol>
+					<li>containing only data</li>
+					<li>containing data and individual attributes for each data node. Each element in the 2D array is an associative array with two indices:<br />
+					<strong>"val"</strong>: the actual data value<br />
+					<strong>"attrs"</strong>: an array of key/value pairs representing the attributes for that data node<br />
+					e.g.
+					<pre class="prettyprint">
+$data =
+	array (
+		array (
+			array (	
+				"val" => 21,
+				"attrs" => array (
+					"label" => "highest",
+					"note" => "busy hour" )),
+			array (
+				"val" => 7,
+				"attrs" => array (
+					"label" => "lowest",
+					"note" => "lunch"))),
+		array (
+			array (
+				"val" => 18,
+				"attrs" => array (
+					"label" => "highest",
+					"note" => "busy hour" )),
+			array (
+				"val" => 4,
+				"attrs" => array (
+					"label" => "lowest",
+					"note" => "tea break"))));
+					</pre>
+					</li>
+				</ol>
+				<p><em>Note: do not mix the two kinds of arrays. Either all data nodes must be of type 1 or all must be of type 2 (this issue may be fixed in the future)</em></p>
+
+			<span class="doc-funcname">chart_grid_h (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=chart_grid_h">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">chart_grid_v (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=chart_grid_v">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">chart_guide (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=chart_guide">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">chart_label (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=chart_label">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">chart_note (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=chart_note">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">chart_pref (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=chart_pref">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">chart_rect (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=chart_rect">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">chart_transition (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=chart_transition">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">chart_type (<span class="doc-funcname-type">array</span> $chart_types)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$chart_types:</span> a normal (numerically indexed) array of chart types</p>
+			
+			<span class="doc-funcname">series (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=series">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">series_color (<span class="doc-funcname-type">array</span> $colors)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$colors:</span> a normal (numerically indexed) array of colours</p>
+			
+			<span class="doc-funcname">series_explode (<span class="doc-funcname-type">array</span> $percentages)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$percentages:</span> a normal (numerically indexed) array of percentages</p>
+
+			<span class="doc-funcname">axis_category (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=axis_category">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">axis_category_label (<span class="doc-funcname-type">array</span> $category_labels)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$category_labels</span> a normal (numerically indexed) array of category labels (null values allowed using a PHP <span class="doc-inlinecode">null</span> value)</p>
+			
+			<span class="doc-funcname">axis_ticks (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=axis_ticks">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">axis_value (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=axis_value">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">axis_value_label (<span class="doc-funcname-type">array</span> $category_labels)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$value_labels:</span> a normal (numerically indexed) array of value labels (null values allowed using a PHP <span class="doc-inlinecode">null</span> value)</p>
+			
+			<span class="doc-funcname">draw (<span class="doc-funcname-type">array</span> $shapes)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$chart_shapes:</span> a normal (numerically indexed) array whose elements are associative arrays containing the information of each shape to be drawn. These associative arrays of key/value pairs represent the names/values of attributes allowed for each shape in the manual. Two special keys are reserved for  the shape type (<strong>"_type"</strong>) and the text for the case of a text shape (<strong>"_text"</strong>). Note that the <strong>"_type"</strong> is always required.<br />
+			e.g.</p>
+				<pre class="prettyprint">
+$shapes = 
+	array ( 
+		array (
+			"_type" => "image",
+			"layer" => "background",
+			"x" => "0",
+			"y" => "17"),
+		array (
+			"_type" => "text",
+			"_text" => "graph",
+			"transition"=>"slide_left",
+			"delay"=>"1",
+			"duration"=">1",
+			"x"=>"0"));
+				</pre><br />
+
+			<span class="doc-funcname">filter (<span class="doc-funcname-type">array</span> $filters)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$filters:</span> a normal (numerically indexed) array whose elements are associative arrays containing the information of each filter to be used. These associative arrays of key/value pairs represent the names/values of attributes allowed for each shape in the manual. A special keys is reserved for the filter type (<strong>"_type"</strong>). Note that the <strong>"_type"</strong> is always required.<br />
+			e.g.</p>
+				<pre class="prettyprint">
+$filters = 
+	array ( 
+		array (
+			"_type"=>"shadow",
+			"id"=>"shadow1",
+			"knockout"="true",
+			"alpha"=>"75",
+			"blurX"="20",
+			"blurY"="20"),
+		array (
+			"_type"=>"bevel",
+			"id"=>"bevel2",
+			"angle"=>"45",
+			"blurX"=>"3",
+			"blurY"=>"3",
+			"distance"=>"3"
+			"highlightAlpha"=>"50"
+			"highlightColor"=>"ffffff"));
+
+				</pre><br />
+
+			<span class="doc-funcname">context_menu (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=context_menu ">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">embed (<span class="doc-funcname-type">array</span> $fonts, <span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$fonts:</span> a normal (numerically indexed) array of fonts<br />
+			<span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=embed">XML/SWF Charts manual</a> for the <strong>&lt;embed&gt;</strong> tag</p>
+
+			<span class="doc-funcname">legend (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=legend">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">link (<span class="doc-funcname-type">array</span> $links)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$links:</span> a normal (numerically indexed) array of links represented by associative arrays of key/value pairs representing the names/values for the allowed attributes for the <strong>&lt;area&gt;</strong> tags in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=link">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">link_data (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=link_data">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">scroll (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=scroll">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">tooltip (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=tooltip">XML/SWF Charts manual</a></p>
+			
+			<span class="doc-funcname">update (<span class="doc-funcname-type">array</span> $attrs)</span><br />
+			<p class="doc-descrip"><span class="doc-attr">$attrs:</span> an associative array of key/value pairs representing the attributes' names/values in the <a href="http://maani.us/xml_charts/index.php?menu=Reference&amp;submenu=update">XML/SWF Charts manual</a></p>
+			
+			<br /><br />
+		</div>
+	</div>
+	<div id="footer-links">
+		<p>
+			&amp;copy; 2011 Doron Horwitz. Design by <a href="http://www.spyka.net">Free CSS Templates</a> and <a href="http://www.justfreetemplates.com">Free Web Templates</a>
+		</p>
+	</div>
+</div>
+</body>
+</html>
